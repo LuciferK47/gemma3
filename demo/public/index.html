@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoGuard - AI-Powered Environmental Conservation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2E7D32, #4CAF50);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #81C784, #A5D6A7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .demo-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .demo-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #81C784;
+        }
+        
+        .demo-card p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .demo-button {
+            background: linear-gradient(45deg, #2E7D32, #4CAF50);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .demo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-stack {
+            background: rgba(0,0,0,0.2);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-badge {
+            background: linear-gradient(45deg, #1B5E20, #2E7D32);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌍 EcoGuard</h1>
+        <p>AI-Powered Environmental Conservation Assistant</p>
+        <p><strong>Built with Google Gemma 3n</strong></p>
+    </div>
+    
+    <div class="demo-container">
+        <div class="demo-card">
+            <h3>🔍 Species Identification</h3>
+            <p>Upload an image to identify plants, animals, and insects using Gemma 3n's multimodal capabilities.</p>
+            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            <button class="demo-button" onclick="document.getElementById('imageInput').click()">
+                📸 Identify Species
+            </button>
+            <div id="imageResult" style="margin-top: 1rem;"></div>
+        </div>
+        
+        <div class="demo-card">
+            <h3>🎵 Audio Analysis</h3>
+            <p>Analyze environmental sounds to assess biodiversity and ecosystem health.</p>
+            <input type="file" id="audioInput" accept="audio/*" style="display: none;">
+            <button class="demo-button" onclick="document.getElementById('audioInput').click()">
+                🎤 Analyze Sounds
+            </button>
+            <div id="audioResult" style="margin-top: 1rem;"></div>
+        </div>
+        
+        <div class="demo-card">
+            <h3>📊 Conservation Actions</h3>
+            <p>Get personalized conservation recommendations based on your location and findings.</p>
+            <button class="demo-button" onclick="showConservationActions()">
+                🌱 Get Recommendations
+            </button>
+            <div id="conservationResult" style="margin-top: 1rem;"></div>
+        </div>
+    </div>
+    
+    <div class="tech-stack">
+        <h2>🚀 Powered by Gemma 3n</h2>
+        <p>Leveraging Google's cutting-edge on-device AI for privacy-first conservation</p>
+        <div class="tech-badges">
+            <span class="tech-badge">Gemma 3n 4B/2B</span>
+            <span class="tech-badge">Multimodal AI</span>
+            <span class="tech-badge">Offline-First</span>
+            <span class="tech-badge">Privacy-Preserving</span>
+            <span class="tech-badge">React Native</span>
+            <span class="tech-badge">Conservation Impact</span>
+        </div>
+    </div>
+    
+    <div class="demo-container">
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🌿</div>
+                <h4>Species Database</h4>
+                <p>Comprehensive offline species information</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h4>Privacy First</h4>
+                <p>All processing happens on-device</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌐</div>
+                <h4>Works Offline</h4>
+                <p>Perfect for remote conservation work</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h4>Actionable Insights</h4>
+                <p>Personalized conservation recommendations</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                identifySpecies(file);
+            }
+        });
+        
+        document.getElementById('audioInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                analyzeAudio(file);
+            }
+        });
+        
+        async function identifySpecies(file) {
+            const resultDiv = document.getElementById('imageResult');
+            resultDiv.innerHTML = '<p>🔄 Analyzing with Gemma 3n...</p>';
+            
+            // Simulate API call to demo server
+            setTimeout(() => {
+                resultDiv.innerHTML = `
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                        <h4>🌳 Oak Tree (Quercus)</h4>
+                        <p><strong>Confidence:</strong> 94%</p>
+                        <p><strong>Conservation Status:</strong> Least Concern</p>
+                        <p><strong>Action:</strong> Plant native oak species in your area</p>
+                    </div>
+                `;
+            }, 2000);
+        }
+        
+        async function analyzeAudio(file) {
+            const resultDiv = document.getElementById('audioResult');
+            resultDiv.innerHTML = '<p>🔄 Analyzing soundscape...</p>';
+            
+            setTimeout(() => {
+                resultDiv.innerHTML = `
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                        <h4>🎵 Biodiversity Score: 8.2/10</h4>
+                        <p><strong>Detected:</strong> 3 bird species, wind, water</p>
+                        <p><strong>Ecosystem Health:</strong> Excellent</p>
+                        <p><strong>Recommendation:</strong> Monitor for seasonal changes</p>
+                    </div>
+                `;
+            }, 2500);
+        }
+        
+        function showConservationActions() {
+            const resultDiv = document.getElementById('conservationResult');
+            resultDiv.innerHTML = `
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                    <h4>🌱 Your Conservation Actions</h4>
+                    <ul style="text-align: left; margin-top: 0.5rem;">
+                        <li>Plant 2 native tree species this spring</li>
+                        <li>Create a pollinator garden</li>
+                        <li>Join local conservation group</li>
+                        <li>Monitor water quality monthly</li>
+                    </ul>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
