@@ -202,26 +202,6 @@ ecoguard-gemma3n/
 └── package.json               # Dependencies and scripts
 ```
 
----
-
-## 📊 **Judging Criteria Alignment**
-
-### **Impact & Vision (40 points)** ✅
-- Addresses significant real-world environmental conservation challenges
-- Clear potential for positive change through democratized expertise
-- Inspiring vision of AI-powered global conservation network
-
-### **Technical Depth & Execution (30 points)** ✅
-- Innovative use of Gemma 3n's multimodal and offline capabilities
-- Real, functional technology with comprehensive architecture
-- Well-engineered solution demonstrating technical excellence
-
-### **Video Pitch & Storytelling (30 points)** 🎬
-- Compelling conservation narrative with global impact potential
-- Professional demonstration of technical capabilities
-- Clear call-to-action for conservation community engagement
-
----
 
 ## 🌍 **Deployment Options**
 
