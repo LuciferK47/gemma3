@@ -1,28 +1,28 @@
 # EcoGuard - AI-Powered Environmental Conservation Assistant
 
-## 🏆 Google Gemma 3n Hackathon Submission
+##  Google Gemma 3n Hackathon Submission
 
 > **Democratizing environmental conservation through on-device AI**  
 > Built with Google's Gemma 3n for privacy-first, offline-capable species identification and ecosystem assessment.
 
 ---
 
-## 🎬 **DEMO LINKS**
+##  **DEMO LINKS**
 
 | Resource | Link | Status |
 |----------|------|--------|
-| **🎥 Video Demo** | [TO BE ADDED] | ⚠️ In Production |
-| **🌐 Live Demo** | http://localhost:3000 | ✅ Working Locally |
-| **📝 Technical Writeup** | [TECHNICAL_WRITEUP.md](./TECHNICAL_WRITEUP.md) | ✅ Complete |
-| **📋 Submission Checklist** | [SUBMISSION_CHECKLIST.md](./SUBMISSION_CHECKLIST.md) | ✅ Complete |
+| **Video Demo** | [TO BE ADDED] | ⚠️ In Production |
+| **Live Demo** | http://localhost:3000 | ✅ Working Locally |
+| **Technical Writeup** | [TECHNICAL_WRITEUP.md](./TECHNICAL_WRITEUP.md) | ✅ Complete |
+| **Submission Checklist** | [SUBMISSION_CHECKLIST.md](./SUBMISSION_CHECKLIST.md) | ✅ Complete |
 
 ---
 
-## 🌍 Project Overview
+## Project Overview
 
 EcoGuard is an innovative environmental conservation application powered by Google's Gemma 3n model. It addresses the critical need for accessible, offline-capable tools that help conservationists, researchers, and citizens monitor and protect our environment.
 
-### 🎯 **The Problem We're Solving**
+###  **The Problem We're Solving**
 
 - **Limited Expert Access**: Conservation expertise isn't available everywhere it's needed
 - **Remote Location Challenges**: Most conservation work happens where internet is unreliable
@@ -30,39 +30,39 @@ EcoGuard is an innovative environmental conservation application powered by Goog
 - **Real-time Assessment Need**: Ecosystems require immediate, expert-level analysis
 - **Privacy Concerns**: Sensitive species location data needs protection
 
-### 💡 **Our Gemma 3n-Powered Solution**
+### **Our Gemma 3n-Powered Solution**
 
 EcoGuard leverages Gemma 3n's unique capabilities to provide:
 
-#### 🔧 **Core Features**
-1. **🔍 Multimodal Species Identification**
+#### **Core Features**
+1. **Multimodal Species Identification**
    - Image recognition for plants, animals, and insects
    - Audio analysis for bird calls and environmental sounds
    - Real-time identification with confidence scores
 
-2. **🌐 Offline-First Design**
+2. **Offline-First Design**
    - Complete functionality without internet connection
    - Privacy-preserving local processing
    - Essential for remote fieldwork
 
-3. **🗣️ Multilingual Support**
+3. **Multilingual Support**
    - Species information in multiple languages
    - Voice interactions in local languages
    - Breaking down conservation communication barriers
 
-4. **📊 Environmental Health Assessment**
+4. **Environmental Health Assessment**
    - Ecosystem condition analysis from visual and audio cues
    - Pollution detection and air quality assessment
    - Biodiversity tracking and reporting
 
-5. **🌱 Conservation Action Recommendations**
+5. ** Conservation Action Recommendations**
    - Personalized conservation actions based on location and findings
    - Integration with local conservation initiatives
    - Educational content and best practices
 
 ---
 
-## 🏗️ **Gemma 3n Integration**
+## **Gemma 3n Integration**
 
 ### **Model Configuration**
 - **Primary Model**: 4B parameters for high-accuracy identification
@@ -90,7 +90,7 @@ AI Engine (Gemma 3n Integration)
 
 ---
 
-## 🚀 **Quick Start**
+##  **Quick Start**
 
 ### **Prerequisites**
 - Node.js (v16 or higher)
@@ -134,7 +134,7 @@ npm run ios      # For iOS
 
 ---
 
-## 🎥 **Demo Scenarios**
+## **Demo Scenarios**
 
 ### **1. Field Researcher in Amazon Rainforest**
 - Identifies unknown plant species through camera
@@ -153,7 +153,7 @@ npm run ios      # For iOS
 
 ---
 
-## 🏆 **Impact & Vision**
+## **Impact & Vision**
 
 EcoGuard democratizes environmental conservation by:
 - **Making expert-level species identification accessible to everyone**
@@ -170,7 +170,7 @@ EcoGuard democratizes environmental conservation by:
 
 ---
 
-## 🔧 **Technical Highlights**
+## **Technical Highlights**
 
 ### **Innovative Features**
 1. **Dynamic Model Switching** - Optimizes between 4B and 2B models based on battery and performance needs
@@ -203,7 +203,7 @@ ecoguard-gemma3n/
 ```
 
 
-## 🌍 **Deployment Options**
+## **Deployment Options**
 
 ### **Local Development**
 ```bash
@@ -226,7 +226,7 @@ docker run -p 3000:3000 ecoguard
 
 ---
 
-## 📝 **Documentation**
+## **Documentation**
 
 - **[Technical Writeup](./TECHNICAL_WRITEUP.md)** - Comprehensive technical documentation
 - **[Submission Checklist](./SUBMISSION_CHECKLIST.md)** - Hackathon requirements tracking
@@ -234,7 +234,7 @@ docker run -p 3000:3000 ecoguard
 
 ---
 
-## 🤝 **Contributing**
+## **Contributing**
 
 EcoGuard is built for the Google Gemma 3n Hackathon with the vision of creating a global conservation community. Future contributions welcome for:
 
@@ -245,13 +245,8 @@ EcoGuard is built for the Google Gemma 3n Hackathon with the vision of creating 
 
 ---
 
-## 📜 **License**
 
-MIT License - Built with ❤️ for environmental conservation
-
----
-
-## 🏆 **Hackathon Submission**
+## **Hackathon Submission**
 
 **Team**: EcoGuard Conservation AI  
 **Challenge**: Google Gemma 3n Hackathon  
