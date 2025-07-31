@@ -260,4 +260,4 @@ MIT License - Built with ❤️ for environmental conservation
 
 ---
 
-*EcoGuard: Democratizing AI-powered environmental conservation - because the future of our planet is in all of our hands.*
+*EcoGuard: Democratizing AI-powered environmental conservation - because everyone deserves a chance to GROW.*
