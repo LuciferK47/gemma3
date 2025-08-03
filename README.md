@@ -1,4 +1,4 @@
-# EcoGuard - AI-Powered Environmental Conservation Assistant
+# EcoGuaRdo - AI-Powered Environmental Conservation Assistant
 
 ##  Google Gemma 3n Hackathon Submission
 
@@ -55,7 +55,7 @@ EcoGuard leverages Gemma 3n's unique capabilities to provide:
    - Pollution detection and air quality assessment
    - Biodiversity tracking and reporting
 
-5. ** Conservation Action Recommendations**
+5. **Conservation Action Recommendations**
    - Personalized conservation actions based on location and findings
    - Integration with local conservation initiatives
    - Educational content and best practices
