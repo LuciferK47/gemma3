@@ -1,5 +1,5 @@
 /**
- * DatabaseService - Offline database management for EcoGuard
+ * DatabaseService - Offline database management for EcoGuardián
  * Handles local storage of discoveries, species data, and user preferences
  */
 
@@ -19,7 +19,7 @@ class DatabaseService {
       console.log('📊 Initializing database...');
       
       // Open database connection
-      this.db = SQLite.openDatabase('ecoguard.db');
+      this.db = SQLite.openDatabase('ecoguardian.db');
       
       // Create tables
       await this.createTables();

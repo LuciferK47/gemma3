@@ -1,5 +1,5 @@
 /**
- * HomeScreen - Main dashboard for EcoGuard application
+ * HomeScreen - Main dashboard for EcoGuardián application
  * Shows overview, recent discoveries, and quick actions
  */
 
@@ -318,7 +318,7 @@ export default function HomeScreen() {
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Text style={styles.welcomeText}>Welcome to</Text>
-        <Text style={styles.appTitle}>EcoGuard</Text>
+                        <Text style={styles.appTitle}>EcoGuardián</Text>
         <Text style={styles.subtitle}>Your AI-powered conservation companion</Text>
       </View>
 

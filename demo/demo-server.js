@@ -1,5 +1,5 @@
 /**
- * EcoGuard Demo Server
+ * EcoGuardián Demo Server
  * Simulates real-world Gemma 3n integration for hackathon demonstration
  * This showcases how the app would work with actual Gemma 3n deployment
  */
@@ -44,7 +44,7 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-console.log('🌍 EcoGuard Demo Server');
+console.log('🌍 EcoGuardián Demo Server');
 console.log('Built with Gemma 3n for Environmental Conservation');
 console.log('='.repeat(50));
 console.log('🤖 Gemma 3n Integration Points:');
@@ -465,7 +465,7 @@ app.get('/', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🌱 EcoGuard Demo Server running on http://localhost:${PORT}`);
+  console.log(`🌱 EcoGuardián Demo Server running on http://localhost:${PORT}`);
   console.log(`🚀 Ready for Gemma 3n Hackathon demonstration!`);
   console.log(`📱 Mobile app should connect to: http://localhost:${PORT}/api`);
 });

@@ -1,5 +1,5 @@
 /**
- * EcoGuard - AI-Powered Environmental Conservation Assistant
+ * EcoGuardián - AI-Powered Environmental Conservation Assistant
  * Entry point for the React Native application
  * Built with Gemma 3n for the Google Hackathon
  */
