@@ -116,11 +116,11 @@ export default function SettingsScreen() {
   };
 
   const openPrivacyPolicy = () => {
-    Linking.openURL('https://ecoguard.example.com/privacy');
+    Linking.openURL('https://ecoguardian.example.com/privacy');
   };
 
   const openTermsOfService = () => {
-    Linking.openURL('https://ecoguard.example.com/terms');
+    Linking.openURL('https://ecoguardian.example.com/terms');
   };
 
   const renderModelSettings = () => (
@@ -286,11 +286,11 @@ export default function SettingsScreen() {
   const renderAboutSection = () => (
     <Card style={styles.card}>
       <Card.Content>
-        <Title style={styles.cardTitle}>About EcoGuard</Title>
+                        <Title style={styles.cardTitle}>About EcoGuardián</Title>
         
         <View style={styles.aboutInfo}>
           <Text style={styles.aboutText}>
-            EcoGuard is an AI-powered environmental conservation assistant built with Google's Gemma 3n model.
+                              EcoGuardián is an AI-powered environmental conservation assistant built with Google's Gemma 3n model.
             Our mission is to democratize conservation knowledge and empower everyone to protect our planet.
           </Text>
           

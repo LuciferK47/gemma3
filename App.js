@@ -24,7 +24,7 @@ import SettingsScreen from './src/screens/SettingsScreen';
 import GemmaService from './src/services/GemmaService';
 import DatabaseService from './src/services/DatabaseService';
 
-// Custom theme for EcoGuard
+// Custom theme for EcoGuardián
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -51,7 +51,7 @@ export default function App() {
 
   const initializeApp = async () => {
     try {
-      console.log('🌱 Initializing EcoGuard...');
+      console.log('🌱 Initializing EcoGuardián...');
       
       // Initialize database
       console.log('📊 Setting up database...');
@@ -65,13 +65,13 @@ export default function App() {
       setIsGemmaReady(true);
       console.log('✅ Gemma 3n ready');
 
-      console.log('🎉 EcoGuard initialized successfully!');
+      console.log('🎉 EcoGuardián initialized successfully!');
     } catch (error) {
       console.error('❌ Initialization error:', error);
       setInitError(error.message);
       Alert.alert(
         'Initialization Error',
-        `Failed to initialize EcoGuard: ${error.message}`,
+        `Failed to initialize EcoGuardián: ${error.message}`,
         [{ text: 'OK' }]
       );
     }
@@ -125,7 +125,7 @@ export default function App() {
         <StatusBar barStyle="dark-content" backgroundColor={theme.colors.background} />
         <View style={styles.loadingContent}>
           <Icon name="eco" size={80} color={theme.colors.primary} />
-          <Text style={styles.loadingTitle}>EcoGuard</Text>
+          <Text style={styles.loadingTitle}>EcoGuardián</Text>
           <Text style={styles.loadingSubtitle}>AI-Powered Environmental Conservation</Text>
           
           <View style={styles.loadingStatus}>
@@ -187,7 +187,7 @@ export default function App() {
           <Tab.Screen 
             name="Home" 
             component={HomeScreen}
-            options={{ title: 'EcoGuard' }}
+            options={{ title: 'EcoGuardián' }}
           />
           <Tab.Screen 
             name="Camera" 
