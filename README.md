@@ -1,16 +1,6 @@
-# EcoGuard - AI-Powered Environmental Conservation Assistant
+# EcoGuardián - AI-Powered Environmental Conservation Assistant
 
-## 🌟 New Features - Modern Web UI
 
-EcoGuard now features a beautiful, modern web interface with:
-
-- **🎨 Sophisticated Design**: Dark theme with 3D animations and interactive elements
-- **📱 Responsive Layout**: Works perfectly on desktop, tablet, and mobile devices
-- **🚀 Real-time Processing**: Live file upload with drag-and-drop support
-- **🎵 Audio Analysis**: Upload audio files for ecosystem health assessment
-- **🌍 Location-based Recommendations**: Personalized conservation plans based on your location
-- **📊 Live Statistics**: Real-time project metrics and impact tracking
-- **✨ Interactive Animations**: Three.js 3D background and smooth scroll animations
 
 ### Quick Start
 ```bash
@@ -40,7 +30,7 @@ npm run demo  # Start the web demo server
 
 ## Project Overview
 
-EcoGuard is an innovative environmental conservation application powered by Google's Gemma 3n model. It addresses the critical need for accessible, offline-capable tools that help conservationists, researchers, and citizens monitor and protect our environment.
+EcoGuardián is an innovative environmental conservation application powered by Google's Gemma 3n model. It addresses the critical need for accessible, offline-capable tools that help conservationists, researchers, and citizens monitor and protect our environment.
 
 ###  **The Problem We're Solving**
 
@@ -275,4 +265,4 @@ EcoGuard is built for the Google Gemma 3n Hackathon with the vision of creating 
 
 ---
 
-*EcoGuard: Democratizing AI-powered environmental conservation - because everyone deserves a chance to GROW.*
+*EcoGuardián: Democratizing AI-powered environmental conservation - because everyone deserves a chance to GROW.*
