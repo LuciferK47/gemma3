@@ -1,4 +1,24 @@
-# EcoGuaRdo - AI-Powered Environmental Conservation Assistant
+# EcoGuard - AI-Powered Environmental Conservation Assistant
+
+## 🌟 New Features - Modern Web UI
+
+EcoGuard now features a beautiful, modern web interface with:
+
+- **🎨 Sophisticated Design**: Dark theme with 3D animations and interactive elements
+- **📱 Responsive Layout**: Works perfectly on desktop, tablet, and mobile devices
+- **🚀 Real-time Processing**: Live file upload with drag-and-drop support
+- **🎵 Audio Analysis**: Upload audio files for ecosystem health assessment
+- **🌍 Location-based Recommendations**: Personalized conservation plans based on your location
+- **📊 Live Statistics**: Real-time project metrics and impact tracking
+- **✨ Interactive Animations**: Three.js 3D background and smooth scroll animations
+
+### Quick Start
+```bash
+npm run demo  # Start the web demo server
+# Visit http://localhost:3000 to see the new UI
+```
+
+---
 
 ##  Google Gemma 3n Hackathon Submission
 
