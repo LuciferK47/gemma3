@@ -7,9 +7,37 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const multer = require('multer');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Configure multer for file uploads
+const storage = multer.memoryStorage();
+const upload = multer({ 
+  storage: storage,
+  limits: {
+    fileSize: 10 * 1024 * 1024 // 10MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.fieldname === 'image') {
+      if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+      } else {
+        cb(new Error('Only image files are allowed for species identification'), false);
+      }
+    } else if (file.fieldname === 'audio') {
+      if (file.mimetype.startsWith('audio/')) {
+        cb(null, true);
+      } else {
+        cb(new Error('Only audio files are allowed for sound analysis'), false);
+      }
+    } else {
+      cb(null, true);
+    }
+  }
+});
 
 // Middleware
 app.use(cors());
@@ -18,6 +46,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 console.log('🌍 EcoGuard Demo Server');
 console.log('Built with Gemma 3n for Environmental Conservation');
+console.log('='.repeat(50));
+console.log('🤖 Gemma 3n Integration Points:');
+console.log('   - Species Identification: /api/identify-species');
+console.log('   - Audio Analysis: /api/analyze-audio');
+console.log('   - Conservation Plans: /api/conservation-recommendations');
+console.log('   - Ecosystem Assessment: /api/ecosystem-assessment');
 console.log('='.repeat(50));
 
 // Mock Gemma 3n responses for demo
@@ -126,12 +160,28 @@ const mockAudioAnalysis = {
 
 // API Routes
 
-// Species identification endpoint
-app.post('/api/identify-species', async (req, res) => {
+// Species identification endpoint - supports both file upload and JSON
+app.post('/api/identify-species', upload.single('image'), async (req, res) => {
   try {
-    const { imageData, location, timestamp } = req.body;
+    let imageData, location, timestamp;
+    
+    if (req.file) {
+      // File upload from new UI
+      imageData = req.file.buffer;
+      location = req.body.location ? JSON.parse(req.body.location) : { name: 'Demo Location' };
+      timestamp = req.body.timestamp || new Date().toISOString();
+      
+      console.log(`🔍 Processing uploaded image: ${req.file.originalname} (${req.file.size} bytes)`);
+    } else {
+      // JSON request from legacy API
+      const body = req.body;
+      imageData = body.imageData;
+      location = body.location;
+      timestamp = body.timestamp;
+    }
     
     // Simulate Gemma 3n processing time
+    // In production, this would call: GemmaService.identifySpecies(imageData, location)
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     // Mock species identification based on random selection
@@ -168,12 +218,30 @@ app.post('/api/identify-species', async (req, res) => {
   }
 });
 
-// Audio analysis endpoint
-app.post('/api/analyze-audio', async (req, res) => {
+// Audio analysis endpoint - supports both file upload and JSON
+app.post('/api/analyze-audio', upload.single('audio'), async (req, res) => {
   try {
-    const { audioData, duration, location, timestamp } = req.body;
+    let audioData, duration, location, timestamp;
+    
+    if (req.file) {
+      // File upload from new UI
+      audioData = req.file.buffer;
+      duration = req.body.duration ? parseInt(req.body.duration) : 30;
+      location = req.body.location ? JSON.parse(req.body.location) : { name: 'Demo Location' };
+      timestamp = req.body.timestamp || new Date().toISOString();
+      
+      console.log(`🎵 Processing uploaded audio: ${req.file.originalname} (${req.file.size} bytes)`);
+    } else {
+      // JSON request from legacy API
+      const body = req.body;
+      audioData = body.audioData;
+      duration = body.duration;
+      location = body.location;
+      timestamp = body.timestamp;
+    }
     
     // Simulate Gemma 3n audio processing
+    // In production, this would call: GemmaService.analyzeAudio(audioData, duration, location)
     await new Promise(resolve => setTimeout(resolve, 3000));
     
     // Mock analysis based on environment type
@@ -210,47 +278,101 @@ app.post('/api/conservation-recommendations', async (req, res) => {
   try {
     const { species, location, userPreferences } = req.body;
     
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log(`🌱 Generating conservation plan for location: ${location?.name || 'Unknown'}`);
     
-    const recommendations = [
+    // Simulate Gemma 3n processing for personalized recommendations
+    // In production, this would call: GemmaService.generateConservationRecommendations(species, location)
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Enhanced location-based recommendations
+    const locationName = location?.name || 'your area';
+    const isCoastal = locationName.toLowerCase().includes('goa') || locationName.toLowerCase().includes('coast');
+    const isUrban = locationName.toLowerCase().includes('city') || locationName.toLowerCase().includes('urban');
+    const isTropical = locationName.toLowerCase().includes('goa') || locationName.toLowerCase().includes('india');
+    
+    let recommendations = [
       {
         action: 'Plant Native Species',
-        description: `Plant native ${species.category === 'bird' ? 'flowering plants and trees' : 'plants'} to support ${species.name} habitat`,
+        description: isTropical 
+          ? `Plant native tropical species like coconut palms, cashew trees, and indigenous flowering plants to support local biodiversity in ${locationName}`
+          : `Plant native ${species?.category === 'bird' ? 'flowering plants and trees' : 'plants'} to support local wildlife habitat`,
         impact: 'High',
         difficulty: 'Easy',
-        timeframe: 'Spring/Fall planting seasons'
+        timeframe: 'Spring/Monsoon planting seasons'
       },
       {
-        action: 'Reduce Chemical Use',
-        description: 'Minimize pesticide and herbicide use in your garden and community',
+        action: isCoastal ? 'Coastal Conservation' : 'Habitat Protection',
+        description: isCoastal 
+          ? 'Protect coastal mangrove ecosystems and participate in beach cleanup initiatives to preserve marine biodiversity'
+          : 'Create buffer zones around natural habitats and minimize human disturbance to wildlife areas',
+        impact: 'Very High',
+        difficulty: 'Medium',
+        timeframe: 'Ongoing'
+      },
+      {
+        action: 'Water Conservation',
+        description: isTropical
+          ? 'Implement rainwater harvesting during monsoon season and create water sources for wildlife during dry periods'
+          : 'Install rain gardens and reduce water consumption to support local aquatic ecosystems',
         impact: 'High',
-        difficulty: 'Easy',
-        timeframe: 'Immediate'
+        difficulty: 'Medium',
+        timeframe: '3-6 months'
       },
       {
-        action: 'Create Wildlife Corridors',
-        description: 'Connect fragmented habitats by planting native species along property lines',
+        action: isUrban ? 'Urban Green Spaces' : 'Wildlife Corridors',
+        description: isUrban
+          ? 'Advocate for more urban green spaces and create rooftop gardens to provide habitat in city environments'
+          : 'Connect fragmented habitats by planting native species along property lines and creating wildlife corridors',
         impact: 'Very High',
         difficulty: 'Medium',
         timeframe: '1-2 years'
       },
       {
-        action: 'Citizen Science Participation',
-        description: `Join local monitoring programs for ${species.name} populations`,
+        action: 'Community Engagement',
+        description: `Join local conservation groups in ${locationName} and participate in citizen science programs to monitor biodiversity`,
         impact: 'Medium',
         difficulty: 'Easy',
-        timeframe: 'Ongoing'
+        timeframe: 'Immediate'
+      },
+      {
+        action: 'Sustainable Practices',
+        description: 'Reduce plastic use, choose sustainable products, and support eco-friendly businesses to minimize environmental impact',
+        impact: 'High',
+        difficulty: 'Easy',
+        timeframe: 'Immediate'
       }
     ];
+    
+    // Add location-specific tips
+    let personalizedTips = [
+      `Based on your location in ${locationName}, these recommendations are tailored to your local ecosystem`,
+      'Small individual actions create significant collective impact for conservation',
+      'Consider seasonal timing for maximum effectiveness of your conservation efforts'
+    ];
+    
+    if (isCoastal) {
+      personalizedTips.push('Coastal areas are biodiversity hotspots - your conservation efforts can protect unique marine and terrestrial species');
+    }
+    
+    if (isTropical) {
+      personalizedTips.push('Tropical regions have high biodiversity - focus on protecting endemic species and traditional ecological knowledge');
+    }
+    
+    if (isUrban) {
+      personalizedTips.push('Urban conservation is crucial - cities can be stepping stones for wildlife migration and adaptation');
+    }
     
     res.json({
       success: true,
       recommendations: recommendations,
-      personalizedTips: [
-        `Based on your location in ${location?.name || 'your area'}, focus on native species adaptation`,
-        `${species.name} populations benefit most from habitat connectivity`,
-        'Your individual actions contribute to larger conservation networks'
-      ]
+      personalizedTips: personalizedTips,
+      locationAnalysis: {
+        type: isCoastal ? 'coastal' : isUrban ? 'urban' : 'terrestrial',
+        climateZone: isTropical ? 'tropical' : 'temperate',
+        priorityActions: isCoastal ? ['mangrove protection', 'marine conservation'] : 
+                        isUrban ? ['green infrastructure', 'urban biodiversity'] : 
+                        ['habitat connectivity', 'native species restoration']
+      }
     });
     
   } catch (error) {
@@ -323,194 +445,22 @@ app.post('/api/ecosystem-assessment', async (req, res) => {
 // Demo dashboard endpoint
 app.get('/api/demo-stats', (req, res) => {
   const stats = {
-    totalIdentifications: 1247,
+    totalIdentifications: 1428,
     speciesDiscovered: 89,
     conservationActionsCompleted: 156,
     ecosystemsAssessed: 23,
     co2Offset: '2.3 tons',
     biodiversityImpact: '15% improvement in local area',
-    communityEngagement: '342 users in your region'
+    communityEngagement: '342 users in your region',
+    hoursAnalyzed: 312
   };
   
   res.json(stats);
 });
 
-// Serve demo web interface
+// Serve demo web interface - redirect to static file
 app.get('/', (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>EcoGuard Demo - Gemma 3n Hackathon</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body { 
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                margin: 0; padding: 20px; background: #F1F8E9; color: #1B5E20;
-            }
-            .container { max-width: 800px; margin: 0 auto; }
-            .header { text-align: center; margin-bottom: 40px; }
-            .logo { font-size: 2.5em; font-weight: bold; color: #2E7D32; margin-bottom: 10px; }
-            .tagline { font-size: 1.2em; color: #81C784; }
-            .card { 
-                background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            }
-            .feature { display: flex; align-items: center; margin-bottom: 16px; }
-            .feature-icon { font-size: 24px; margin-right: 12px; }
-            .demo-button {
-                background: #2E7D32; color: white; border: none; padding: 12px 24px;
-                border-radius: 8px; font-size: 16px; cursor: pointer; margin: 8px;
-            }
-            .demo-button:hover { background: #1B5E20; }
-            .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-            .stat { text-align: center; }
-            .stat-number { font-size: 2em; font-weight: bold; color: #2E7D32; }
-            .stat-label { color: #81C784; }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <div class="logo">🌱 EcoGuard</div>
-                <div class="tagline">AI-Powered Environmental Conservation</div>
-                <p>Built with Google Gemma 3n for the Hackathon</p>
-            </div>
-            
-            <div class="card">
-                <h2>🚀 Live Demo Server</h2>
-                <p>This server simulates the Gemma 3n integration for EcoGuard. In production, this would connect directly to the Gemma 3n model for real-time species identification and environmental analysis.</p>
-                
-                <div class="feature">
-                    <span class="feature-icon">📱</span>
-                    <div>
-                        <strong>Mobile App Integration</strong><br>
-                        React Native app connects to this API for AI processing
-                    </div>
-                </div>
-                
-                <div class="feature">
-                    <span class="feature-icon">🤖</span>
-                    <div>
-                        <strong>Gemma 3n Multimodal AI</strong><br>
-                        Image and audio processing for species identification
-                    </div>
-                </div>
-                
-                <div class="feature">
-                    <span class="feature-icon">🌍</span>
-                    <div>
-                        <strong>Conservation Impact</strong><br>
-                        Personalized recommendations for environmental action
-                    </div>
-                </div>
-                
-                <div class="feature">
-                    <span class="feature-icon">🔒</span>
-                    <div>
-                        <strong>Privacy-First Design</strong><br>
-                        All processing can be done offline on-device
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>📊 Demo Statistics</h2>
-                <div class="stats" id="stats">
-                    <div class="stat">
-                        <div class="stat-number">1,247</div>
-                        <div class="stat-label">Species Identified</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">89</div>
-                        <div class="stat-label">Unique Species</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">156</div>
-                        <div class="stat-label">Conservation Actions</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">2.3T</div>
-                        <div class="stat-label">CO₂ Offset</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>🧪 API Testing</h2>
-                <p>Test the Gemma 3n integration endpoints:</p>
-                <button class="demo-button" onclick="testSpeciesAPI()">Test Species Identification</button>
-                <button class="demo-button" onclick="testAudioAPI()">Test Audio Analysis</button>
-                <button class="demo-button" onclick="testEcosystemAPI()">Test Ecosystem Assessment</button>
-                <div id="results" style="margin-top: 20px; padding: 16px; background: #E8F5E8; border-radius: 8px; display: none;">
-                    <h3>API Response:</h3>
-                    <pre id="response-data" style="white-space: pre-wrap; font-size: 12px;"></pre>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>🎯 Hackathon Impact</h2>
-                <p><strong>EcoGuard represents a unique approach to environmental conservation:</strong></p>
-                <ul>
-                    <li><strong>Democratizes Expert Knowledge:</strong> Makes species identification accessible to everyone</li>
-                    <li><strong>Offline-First Design:</strong> Works in remote areas without internet connectivity</li>
-                    <li><strong>Actionable Insights:</strong> Provides personalized conservation recommendations</li>
-                    <li><strong>Community Building:</strong> Connects users with local conservation efforts</li>
-                    <li><strong>Real-World Impact:</strong> Tracks and measures conservation outcomes</li>
-                </ul>
-            </div>
-        </div>
-        
-        <script>
-            async function testAPI(endpoint, data) {
-                const results = document.getElementById('results');
-                const responseData = document.getElementById('response-data');
-                
-                results.style.display = 'block';
-                responseData.textContent = 'Loading...';
-                
-                try {
-                    const response = await fetch(endpoint, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                    const result = await response.json();
-                    responseData.textContent = JSON.stringify(result, null, 2);
-                } catch (error) {
-                    responseData.textContent = 'Error: ' + error.message;
-                }
-            }
-            
-            function testSpeciesAPI() {
-                testAPI('/api/identify-species', {
-                    imageData: 'base64_image_data_here',
-                    location: { name: 'Demo Location', latitude: 40.7128, longitude: -74.0060 },
-                    timestamp: new Date().toISOString()
-                });
-            }
-            
-            function testAudioAPI() {
-                testAPI('/api/analyze-audio', {
-                    audioData: 'base64_audio_data_here',
-                    duration: 30,
-                    location: { name: 'Demo Location', latitude: 40.7128, longitude: -74.0060 },
-                    timestamp: new Date().toISOString()
-                });
-            }
-            
-            function testEcosystemAPI() {
-                testAPI('/api/ecosystem-assessment', {
-                    imageData: 'base64_image_data_here',
-                    audioData: 'base64_audio_data_here',
-                    location: { name: 'Demo Location', latitude: 40.7128, longitude: -74.0060 }
-                });
-            }
-        </script>
-    </body>
-    </html>
-  `);
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start server
